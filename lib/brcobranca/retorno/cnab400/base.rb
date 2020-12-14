@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 require 'parseline'
+require 'active_support/core_ext/object/blank'
 
 module Brcobranca
   module Retorno

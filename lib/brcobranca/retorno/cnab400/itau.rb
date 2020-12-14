@@ -113,9 +113,7 @@ module Brcobranca
           # :brancos, 385..391 #complemento de registro
           # :cod_de_liquidacao, 392..393 #meio pelo qual o título foi liquidado
 
-          parse.field :motivo_ocorrencia, 377..384, ->(motivos) do
-            motivos.scan(/.{2}/).reject(&:blank?).reject{|motivo| motivo == '00'}
-          end
+          parse.field :motivo_ocorrencia, 377..384, ->(motivos) { motivos.scan(/../).reject { |n| n.to_i.zero? } }
 
           # :numero_sequencial, 394..399 #numero sequencial no arquivo
           parse.field :sequencial, 394..399

@@ -32,9 +32,7 @@ module Brcobranca
           #parse.field :seu_numero, 116..125 seu numero
           #parse.field :nosso_numero, 126..133 nosso numero denovo?
           #parse.field :codigo_rejeicao, 134..135 nosso numero
-          parse.field :motivo_ocorrencia, 136..145, ->(motivos) do
-            motivos.scan(/.{2}/).reject(&:blank?).reject{|motivo| motivo == '00'}
-          end
+          parse.field :motivo_ocorrencia, 136..145, ->(motivos) { motivos.scan(/../).reject { |n| n.to_i.zero? } }
 
           parse.field :data_vencimento, 146..151
           parse.field :valor_titulo, 152..164
